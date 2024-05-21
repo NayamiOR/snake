@@ -1,19 +1,18 @@
-use std::rc::Rc;
 use std::cell::RefCell;
+use std::rc::Rc;
 
-
-pub struct renderer {
+pub struct Renderer {
     grid: Rc<RefCell<Vec<Vec<char>>>>,
 }
 
-impl renderer {
-    pub fn new(grid:Rc<RefCell<Vec<Vec<char>>>>) -> renderer {
-        renderer{
-            grid: grid,
-        }
+impl Renderer {
+    pub fn new(grid: Rc<RefCell<Vec<Vec<char>>>>) -> Renderer {
+        Renderer { grid: grid }
     }
-    pub fn render(&self) {
-        let grid = self.grid.borrow();
+    pub fn update(&self) {
+        print!("\x1b[2J");
+        print!("\x1b[H");
+        let grid: std::cell::Ref<Vec<Vec<char>>> = self.grid.borrow();
         for row in grid.iter() {
             for cell in row.iter() {
                 print!("{} ", cell);
