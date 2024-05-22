@@ -1,5 +1,9 @@
 pub mod game;
 pub mod render;
+pub mod snake;
+pub mod direction;
+pub mod location;
+pub mod input_detector;
 
 use game::GameManager;
 
